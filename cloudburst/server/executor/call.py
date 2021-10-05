@@ -14,6 +14,7 @@
 
 import logging
 import time
+import json
 
 from anna.lattices import (
     Lattice,
@@ -158,13 +159,20 @@ def _resolve_ref_normal(refs, kvs, cache):
     kv_pairs = {}
     keys = set()
 
+    data = {}
+    data['exe-trace'] = []
+
     for ref in refs:
         deserialize_map[ref.key] = ref.deserialize
         if ref.key in cache:
             kv_pairs[ref.key] = cache[ref.key]
+            data['exe-trace'].append({ 'key' : ref.key, 'status' : '1' })
         else:
             keys.add(ref.key)
+            data['exe-trace'].append({ 'key' : ref.key, 'status' : '0' })
 
+    with open('trace_data.txt', 'a+') as outfile:
+        json.dump(data, outfile)
     keys = list(keys)
 
     if len(keys) != 0:
