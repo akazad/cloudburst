@@ -69,6 +69,9 @@ elif bname == 'avg':
 elif bname == 'center_avg':
     total, scheduler, kvs, retries = centr_avg.run(cloudburst_client, num_requests,
                                                   None)
+elif bname =='retwis':
+    total, scheduler, kvs, retries = retwis.run(
+        cloudburst_client, num_requests, None)
 elif bname == 'summa':
     total, scheduler, kvs, retries = summa.run(cloudburst_client, num_requests,
                                                None)
