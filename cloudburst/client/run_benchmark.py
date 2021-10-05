@@ -26,6 +26,7 @@ from cloudburst.server.benchmarks import (
     locality,
     mobilenet,
     predserving,
+    retwis,
     scaling,
     summa,
     utils
